@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Climatização — Painel de Alarmes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="app">
+    <header class="app-header">
+      <div class="app-header__text">
+        <h1>Sistema de Climatização</h1>
+        <p class="app-header__subtitle">
+          Monitoramento de temperatura e umidade da sala com acionamento de alarmes por período.
+        </p>
+      </div>
+      <span id="periodo" class="periodo" role="status" aria-live="polite">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm.75 4.5v4.9l3.3 2.3-.9 1.3-4.15-2.9V7.5Z"/></svg>
+        <span class="periodo__label">Período</span>
+        <strong class="periodo__valor" id="periodo-valor">—</strong>
+      </span>
+    </header>
+
+    <main id="conteudo" class="layout">
+      <section class="panel" aria-labelledby="leitura-titulo">
+        <h2 id="leitura-titulo" class="panel__title">Leitura dos sensores</h2>
+
+        <div class="field">
+          <div class="field__head">
+            <label for="hora">Hora do dia (H)</label>
+            <output class="field__value" id="hora-out" for="hora">12 h</output>
+          </div>
+          <input type="range" id="hora" name="hora" min="0" max="23" step="1" value="12"
+                 aria-describedby="hora-help" />
+          <p class="field__help" id="hora-help">Dia: 8 h–17 h · Noite: 18 h–7 h</p>
+        </div>
+
+        <div class="field">
+          <div class="field__head">
+            <label for="temperatura">Temperatura (T)</label>
+            <output class="field__value" id="temperatura-out" for="temperatura">22 °C</output>
+          </div>
+          <input type="range" id="temperatura" name="temperatura" min="-10" max="50" step="1" value="22"
+                 aria-describedby="temperatura-help" />
+          <p class="field__help" id="temperatura-help">Faixa de referência: 5 °C a 25 °C</p>
+        </div>
+
+        <div class="field">
+          <div class="field__head">
+            <label for="umidade">Umidade (U)</label>
+            <output class="field__value" id="umidade-out" for="umidade">65 %</output>
+          </div>
+          <input type="range" id="umidade" name="umidade" min="0" max="100" step="1" value="65"
+                 aria-describedby="umidade-help" />
+          <p class="field__help" id="umidade-help">Faixa de referência: 50 % a 80 %</p>
+        </div>
+
+        <fieldset class="presets">
+          <legend>Cenários rápidos</legend>
+          <button type="button" class="chip" data-preset="10,4,65">Dia frio</button>
+          <button type="button" class="chip" data-preset="10,30,85">Dia quente e úmido</button>
+          <button type="button" class="chip" data-preset="22,21,59">Noite morna</button>
+          <button type="button" class="chip" data-preset="22,15,70">Noite estável</button>
+        </fieldset>
+      </section>
+
+      <section class="panel" aria-labelledby="alarmes-titulo">
+        <h2 id="alarmes-titulo" class="panel__title">Alarmes acionados</h2>
+        <div id="resultado" class="resultado" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <details>
+        <summary>Regras avaliadas</summary>
+        <ul class="regras">
+          <li><strong>R1</strong> — Dia e temperatura abaixo de 5 °C ou acima de 25 °C.</li>
+          <li><strong>R2</strong> — Noite e temperatura acima de 20 °C.</li>
+          <li><strong>R3</strong> — Umidade abaixo de 50 % ou acima de 80 %.</li>
+          <li><strong>R4</strong> — Umidade abaixo de 60 % com temperatura acima de 20 °C.</li>
+        </ul>
+      </details>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

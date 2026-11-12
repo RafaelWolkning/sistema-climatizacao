@@ -1,0 +1,19 @@
+{
+  "name": "sistema-climatizacao",
+  "version": "1.0.0",
+  "description": "Sistema de climatização com cenários de teste (qualidade de produto e testes automatizados)",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "start": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.5.2",
+    "jest-html-reporters": "^3.1.7",
+    "jest-junit": "^17.0.0",
+    "jsdom": "^31.0.0"
+  }
+}
